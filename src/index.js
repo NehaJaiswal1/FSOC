@@ -1,11 +1,13 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const multer = require("multer");
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 const route = require("./route/jobroute");
 mongoose.set("strictQuery", true);
 const app = express();
+const cors = require('cors')
 
+app.use(cors())
 app.use(express.json());
 app.use(multer().any());
 
@@ -23,7 +25,7 @@ mongoose
 
 app.use("/", route);
 
-app.listen(port, () => {
+app.listen(port, '127.0.0.1', () => {
   console.log(`App is running on port ${port}`);
 });
 
